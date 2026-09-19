@@ -1,0 +1,216 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Category {
+  id             String    @id @default(cuid())
+  name           String
+  slug           String    @unique
+  description    String
+  coverImage     String
+  order          Int       @default(0)
+  isFeatured     Boolean   @default(true)
+  seoTitle       String?
+  seoDescription String?
+  projects       Project[]
+  packages       Package[]
+  createdAt      DateTime  @default(now())
+}
+
+model Service {
+  id            String   @id @default(cuid())
+  title         String
+  slug          String   @unique
+  subtitle      String
+  description   String
+  coverImage    String
+  startingPrice String?
+  duration      String?
+  deliverables  String   // JSON string or newline list
+  order         Int      @default(0)
+  isFeatured    Boolean  @default(true)
+  createdAt     DateTime @default(now())
+}
+
+model Project {
+  id             String         @id @default(cuid())
+  title          String
+  slug           String         @unique
+  categoryId     String
+  category       Category       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  client         String?
+  location       String?
+  date           String?
+  sessionType    String?
+  coverImage     String
+  story          String
+  featuredImage  String?
+  tags           String?        // comma-separated
+  isFeatured     Boolean        @default(false)
+  isPublished    Boolean        @default(true)
+  order          Int            @default(0)
+  seoTitle       String?
+  seoDescription String?
+  ogImage        String?
+  images         ProjectImage[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+model ProjectImage {
+  id          String   @id @default(cuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  url         String
+  caption     String?
+  aspectRatio String?  @default("landscape") // landscape, portrait, square, wide
+  order       Int      @default(0)
+  isFeatured  Boolean  @default(false)
+}
+
+model Package {
+  id           String    @id @default(cuid())
+  name         String
+  slug         String    @unique
+  description  String
+  price        String?
+  showPrice    Boolean   @default(true)
+  duration     String
+  imagesCount  String
+  deliverables String    // JSON string or newline list
+  categoryId   String?
+  category     Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  isFeatured   Boolean   @default(false)
+  order        Int       @default(0)
+  createdAt    DateTime  @default(now())
+}
+
+model PackageAddon {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       String
+  isAvailable Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model AlbumPrint {
+  id          String   @id @default(cuid())
+  name        String
+  type        String   // Album, Book, Print, Canvas
+  description String
+  dimensions  String?
+  price       String?
+  coverImage  String
+  isAvailable Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  clientName  String
+  clientPhoto String?
+  sessionType String
+  location    String?
+  quote       String
+  rating      Int      @default(5)
+  isFeatured  Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Faq {
+  id          String   @id @default(cuid())
+  question    String
+  answer      String
+  category    String   @default("General") // General, Booking, Wedding, Maternity, Newborn, Portrait, Delivery, Payments
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model BlogPost {
+  id             String    @id @default(cuid())
+  title          String
+  slug           String    @unique
+  excerpt        String
+  content        String
+  coverImage     String
+  category       String
+  author         String    @default("DIVASTUDIO Editorial")
+  readTime       String    @default("4 min read")
+  isPublished    Boolean   @default(true)
+  publishedAt    DateTime  @default(now())
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model Enquiry {
+  id              String   @id @default(cuid())
+  name            String
+  phone           String
+  email           String
+  city            String?
+  photographyType String
+  preferredDate   String?
+  preferredTime   String?
+  peopleCount     String?
+  budget          String?
+  message         String
+  status          String   @default("NEW") // NEW, CONTACTED, CONSULTATION, BOOKED, COMPLETED, CANCELLED
+  followUpDate    String?
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model PhotographerProfile {
+  id             String  @id @default(cuid())
+  name           String
+  role           String
+  portraitImage  String
+  bio            String
+  philosophy     String
+  specialties    String?
+  studioLocation String?
+}
+
+model StudioInfo {
+  id           String  @id @default(cuid())
+  name         String
+  description  String
+  address      String
+  phone        String
+  email        String
+  whatsapp     String
+  instagram    String
+  facebook     String?
+  hours        String
+  studioImages String  // JSON array of image URLs
+}
+
+model SiteSetting {
+  id          String @id @default(cuid())
+  key         String @unique
+  value       String
+  description String?
+}
