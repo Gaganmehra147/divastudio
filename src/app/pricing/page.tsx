@@ -5,7 +5,7 @@ import { prisma } from '@/lib/prisma';
 import { ArrowUpRight, Check, Sparkles, Clock, ShieldCheck } from 'lucide-react';
 import AlbumsPrints from '@/components/home/AlbumsPrints';
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function PricingPage() {
   const [packages, addons, albums] = await Promise.all([

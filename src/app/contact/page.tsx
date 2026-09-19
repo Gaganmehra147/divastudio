@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma';
 import BookingCta from '@/components/home/BookingCta';
 import { MapPin, Phone, Mail, Clock, Instagram, MessageSquare } from 'lucide-react';
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function ContactPage() {
   const [categories, studio] = await Promise.all([

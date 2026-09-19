@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 import FaqAccordion from '@/components/home/FaqAccordion';
 import { ArrowUpRight } from 'lucide-react';
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function FaqPage() {
   const faqs = await prisma.faq.findMany({

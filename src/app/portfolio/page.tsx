@@ -2,7 +2,7 @@ import React from 'react';
 import { prisma } from '@/lib/prisma';
 import SelectedStories from '@/components/home/SelectedStories';
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function PortfolioPage() {
   const [categories, projects] = await Promise.all([

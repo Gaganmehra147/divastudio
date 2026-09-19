@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 import { ArrowUpRight, Star } from 'lucide-react';
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function TestimonialsPage() {
   const testimonials = await prisma.testimonial.findMany({

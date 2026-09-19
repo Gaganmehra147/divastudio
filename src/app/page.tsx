@@ -14,7 +14,7 @@ import FaqAccordion from '@/components/home/FaqAccordion';
 import VisualJournal from '@/components/home/VisualJournal';
 import BookingCta from '@/components/home/BookingCta';
 
-export const revalidate = 0; // Fresh dynamic data
+export const revalidate = 60; // Instant cached response with ISR background revalidation
 
 export default async function HomePage() {
   // Fetch dynamic studio content from database

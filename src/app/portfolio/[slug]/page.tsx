@@ -6,7 +6,7 @@ import { prisma } from '@/lib/prisma';
 import { ArrowLeft, ArrowUpRight, MapPin, Calendar, User, Tag } from 'lucide-react';
 import ProjectGallery from '@/components/portfolio/ProjectGallery';
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function ProjectStoryPage({
   params,

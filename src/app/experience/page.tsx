@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowUpRight, Check, Clock, Heart, Sparkles, Compass } from 'lucide-react';
 import ExperienceTimeline from '@/components/home/ExperienceTimeline';
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default function ExperiencePage() {
   return (

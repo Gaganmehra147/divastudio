@@ -3,6 +3,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  compress: true,
+  poweredByHeader: false,
   images: {
     remotePatterns: [
       {
@@ -18,6 +20,7 @@ const nextConfig = {
         hostname: '**.supabase.co',
       },
     ],
+    minimumCacheTTL: 31536000,
     formats: ['image/avif', 'image/webp'],
   },
 };
