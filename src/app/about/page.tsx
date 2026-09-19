@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 import { ArrowUpRight, Camera, Sparkles, MapPin, Compass } from 'lucide-react';
-import StudioCraft from '@/components/home/StudioCraft';
 
 export const revalidate = 60;
 
@@ -85,9 +84,6 @@ export default async function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* The Physical Studio Space */}
-      <StudioCraft />
 
       {/* Values & Principles */}
       <section className="py-24 bg-[#FAF7F2]">

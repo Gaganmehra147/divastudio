@@ -7,7 +7,6 @@ import SelectedStories from '@/components/home/SelectedStories';
 import ThroughTheLens from '@/components/home/ThroughTheLens';
 import BehindTheLens from '@/components/home/BehindTheLens';
 import ExperienceTimeline from '@/components/home/ExperienceTimeline';
-import StudioCraft from '@/components/home/StudioCraft';
 import TestimonialQuote from '@/components/home/TestimonialQuote';
 import AlbumsPrints from '@/components/home/AlbumsPrints';
 import FaqAccordion from '@/components/home/FaqAccordion';
@@ -81,10 +80,7 @@ export default async function HomePage() {
       {/* 7. The Divastudio Experience (6-step timeline) */}
       <ExperienceTimeline />
 
-      {/* 8. The Studio & Craftsmanship */}
-      <StudioCraft />
-
-      {/* 9. Editorial Testimonials */}
+      {/* 8. Editorial Testimonials */}
       <TestimonialQuote testimonials={testimonials} />
 
       {/* 10. Physical Heirlooms: Albums & Prints */}
