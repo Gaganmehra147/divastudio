@@ -50,9 +50,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${serifFont.variable} ${sansFont.variable} scroll-smooth`}>
       <body className="antialiased min-h-screen flex flex-col bg-[#FAF7F2] text-[#1A1918]">
-        {/* Subtle organic film grain texture overlay */}
-        <div className="film-grain" aria-hidden="true" />
-        
         {/* Contextual custom desktop cursor */}
         <CustomCursor />
 

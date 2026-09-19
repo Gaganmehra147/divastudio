@@ -149,7 +149,6 @@ export default function ThroughTheLens() {
                 src={currentPreset.img}
                 alt="Through The Lens Study"
                 fill
-                priority
                 className="object-cover"
                 sizes="(max-width: 1200px) 100vw, 1200px"
               />
